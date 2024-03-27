@@ -7,7 +7,7 @@ questions:
 - "What pressure control algorithms are commonly used?"
 - "What are the strengths and weaknesses of these common barostats?"
 objectives:
-- ""
+- "Implement pressure control"
 keypoints:
 - ""
 ---
