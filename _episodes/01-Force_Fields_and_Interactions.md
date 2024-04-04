@@ -15,59 +15,70 @@ keypoints:
 ---
 
 ## Polls
-
-### Non-bonded interactions.
+### 1. Non-bonded interactions.
 How many interactions are in the system composed of 10 Argon atoms?
 1. 10
-2. 45 *
+2. *45 
 3. 50
 4. 100
 
-### 1-4 interactions
-How many 1-4 interactions between carbon atoms are in the system composed of 100 pentane molecules?
+### 1. 1-4 interactions
+How many 1-4 interactions between carbon atoms are in the system composed of 100 pentane (H3C-CH2-CH2-CH2-CH3) molecules?
 
-1. 200 
+1. *200 
 2. 300 
-3. 400 *
+3. 400 
 4. 500
 
-### Thermodynamic ensembles
+### 1. Interactions between molecules
+Which potential describes the interaction between two molecules?
+1. CMAP potential
+2. Urey-Bradley potential
+3. *Lennard-Jones potential 
+4. Angle potential
+
+### 2. Truncation of Lennard-Jones Interactions
+Which truncation method modifies potential only near the cut-off distance?
+1. Shifted potential
+2. Shifted force
+3. *Switching function 
+4. Truncated potential
+
+### 3. Simulation time step.
+Which method allows for a time step of 4 fs?
+1. Constraining bonds involving hydrogen atoms
+2. *Hydrogen mass repartitioning 
+3. Constraining bonds and angles involving hydrogen atoms
+4. Constraining angles between heavy atoms
+
+### 4. Periodic box
+Which of the statements is incorrect?
+1. *The smallest dimension of a periodic box must be at least as large as the cut-off radius 
+2. The minimum box size should extend at least 10 nm from the solute
+3. The smallest dimension of a periodic box must be at least as large as the double cut-off radius
+4. There is an equivalent triclinic unit cell for any repeating shape that occupies all of space
+
+### 6. Electrostatic interactions
+Which of the following statements is incorrect? 
+For more accurate electrostatic calculations you need to:
+1. Decrease grid spacing
+2. Increase the grid dimensions
+3. *Increase direct space tolerance
+4. Increase the interpolation order
+
+### 7. Thermodynamic ensembles
 What thermodynamic ensemble describes an isolated system?
-1. Microcanonical *
+1. *Microcanonical 
 2. Canonical
 3. Grand canonical
 4. Isothermal-isobaric
 
-### Interactions
-Which potential describes the interaction between two molecules?
-1. CMAP potential
-2. Urey-Bradley potential
-3. Lennard-Jones potential
-4. Angle potential
-
-### Truncation of Lennard-Jones Interactions
-Which truncation method modifies potential only near the cut-off distance?
-1. Shifted potential
-2. Shifted force
-3. Switching function
-4. Truncated potential
-
-### Simulation time step.
-Which method allows for a time step of 4 fs?
-1. Constraining bonds involving hydrogen atoms
-2. Hydrogen mass repartitioning
-3. Constraining bonds and angles involving hydrogen atoms
-4. Constraining angles between heavy atoms
-
-### Periodic box
-Which of the statements is incorrect?
-1. The smallest dimension of a periodic box must be at least as large as the cut-off radius.
-2. The minimum box size should extend at least 10 nm from the solute.
-3. The smallest dimension of a periodic box must be at least as large as the double cut-off radius.
-4. There is an equivalent triclinic unit cell for any repeating shape that occupies all of space.
-
-
-
+### 7. Thermostats
+Which of the following statements is incorrect? 
+1. Stochastic temperature control methods impair conformational transitions
+2. The Berendsen thermostat is very useful for heating simulation systems
+3. Extended system thermostats control temperature without random velocity rescaling
+4. *Local thermostats work well for small groups of atoms
 
 ## Introduction
 Atoms and molecules, the building blocks of matter, interact with each other. They are attracted at long distances, but at short distances the interactions become strongly repulsive. As a matter of fact, there is no need to look for a proof that such interactions exist. Every day, we observe indirect results of these interactions with our own eyes. For example, because of the attraction between water molecules, they stick together to form drops, which then rain down to fill rivers. On the other hand, due to the strong repulsion, one liter of the same water always weighs about 1 kg, regardless of how much pressure we use to compress it.

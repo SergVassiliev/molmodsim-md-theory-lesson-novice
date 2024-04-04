@@ -16,7 +16,7 @@ keypoints:
 
 ![graph: electrostatic potential]({{ page.root }}/fig/Coulomb_interaction.png){: width="260" }
 
-Due to the long-range behavior of Coulomb interactions, the task of computing Coulomb potentials is often the most time consuming part of any MD simulation.  Therefore, fast and efficient algorithms are required to accelerate these calculations.
+Electrostatic interactions decay slowly with distance. An electrostatic interaction calculation must include particles within at least 100 A for reasonable accuracy. Due to this long-range behavior, the task of computing Coulomb potentials is often the most time consuming part of any MD simulation. Computing electrostatic energy by direct summation of all pairwise interactions would be prohibitively slow even in a system without periodic boundary condition. To complicate things in periodic systems it is necessary to compute contributions from all periodic images (lattice sum). To accelerate these calculations, fast and efficient algorithms are needed.
 {: .self_study_text :}
 
 - Computing Coulomb potentials is often the most time consuming part of any MD simulation. 

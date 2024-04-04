@@ -55,7 +55,7 @@ The plot above shows the distributions for the velocities of oxygen atoms from w
 {: .self_study_text :}
 
 ## Thermodynamic ensembles
-MD simulations are usually simulate one of the following thermodynamic ensembles:
+Simulation systems can be classified according to their degree of separation from their surroundings, ranging from completely isolated to completely open. MD simulations usually simulate one of the following thermodynamic ensembles:
 
 1. The *microcanonical* or constant **NVE** ensemble, where the number of particles (*N*), the system's Volume (*V*) and the energy (*E*) are kept constant during the simulation. The microcanonical ensemble describes a system which is completely isolated from its surroundings. 
 2. The *canonical* or constant **NVT** ensemble, where the number of particles, the Volume and the temperature (*T*) are kept constant. The canonical ensemble describes a system in contact with a heat bath at constant temperature.
@@ -74,7 +74,7 @@ Simulation of *NVE* ensemble is relatively easy to achieve, as long as the MD co
 - In many cases constant ambient pressure and temperature are desired. In addition to using a thermostat to control the temperature, we also need to use a pressure control algorithm, a *barostat*.
 {: .instructor_notes :}
 
-The *grand canonical ensemble* however, where the chemical potential *&mu;* is kept constant, describes a system in contact with heat and particle bath. For example water in contact with a vapour bath. It requires that the number of particles is allowed to change, which is not supported by most MD packages.
+The *grand canonical ensemble* describes a system in contact with heat and particle bath. For example water in contact with a vapour bath. It requires that the number of particles is allowed to change, which is not supported by most MD packages.
 {: .self_study_text :}
 
 ## Temperature Control Algorithms
