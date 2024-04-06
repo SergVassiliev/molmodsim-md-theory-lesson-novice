@@ -75,6 +75,16 @@ The long range contribution can then be efficiently computed in Fourier space us
 {: .instructor_notes :}
 
 
+### Poll 6. Electrostatic interactions
+Which of the following statements is incorrect? 
+For more accurate electrostatic calculations you need to:
+1. Decrease grid spacing
+2. Increase the grid dimensions
+3. *Increase direct space tolerance
+4. Increase the interpolation order
+
+- Higher tolerance shifts more charges into Fourier space and calculations in Fourier space are less accurate than direct summation.
+
 | Variable \ MD package | GROMACS                  | NAMD                      | AMBER                  |
 |-----------------------|--------------------------|---------------------------|------------------------|
 | Fourier grid spacing  | fourierspacing (1.2)     | PMEGridSpacing  (1.5)     |                        |

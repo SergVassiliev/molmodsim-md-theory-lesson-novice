@@ -198,6 +198,13 @@ To accelerate a simulation the electrostatic interactions outside of a specified
 - Hydrogen mass repartitioning allows increasing time step to 4 fs.
 
 
+### Poll 3 Simulation time step.
+Which method allows for a time step of 4 fs?
+1. Constraining bonds involving hydrogen atoms
+2. *Hydrogen mass repartitioning 
+3. Constraining bonds and angles involving hydrogen atoms
+4. Constraining angles between heavy atoms
+
 > ## Specifying Time Parameters
 > **GROMACS**
 >

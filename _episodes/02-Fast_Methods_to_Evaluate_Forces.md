@@ -155,6 +155,14 @@ Cutoff problems are especially pronounced when energy conservation is required. 
 {: .instructor_notes :}
 
 
+### Poll 2 Truncation of VDW Interactions
+Which truncation method modifies VDW interactions only near the cut-off distance?
+1. Shifted potential             
+2. Shifted force
+3. *Switching function 
+4. Truncated potential
+
+
 ## Truncation of the Electrostatic Interactions
 Electrostatic interactions occurring over long distances are known to be important for biological molecules. Electrostatic interactions decay slowly and simple increase of the cutoff distance to account for long-range interactions can dramatically raise the computational cost. In periodic simulation systems, the most commonly used method for calculation of long-range electrostatic interactions is particle-mesh Ewald.  In this method, the electrostatic interaction is divided into two parts: a short-range contribution, and a long-range contribution. The short-range contribution is calculated by exact summation of all pairwise interactions of atoms separated by a distance that is less than cutoff in real space. The forces beyond the cutoff radius are approximated on the grid in Fourier space commonly by the Particle-Mesh Ewald (PME) method.
 {: .self_study_text :}

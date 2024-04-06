@@ -77,6 +77,13 @@ Simulation of *NVE* ensemble is relatively easy to achieve, as long as the MD co
 The *grand canonical ensemble* describes a system in contact with heat and particle bath. For example water in contact with a vapour bath. It requires that the number of particles is allowed to change, which is not supported by most MD packages.
 {: .self_study_text :}
 
+### Poll 7.1 Thermodynamic ensembles
+What thermodynamic ensemble describes an isolated system?
+1. *Microcanonical 
+2. Canonical
+3. Grand canonical
+4. Isothermal-isobaric
+
 ## Temperature Control Algorithms
 Despite their benefits, temperature control algorithms or thermostats have been described as "necessary evils" simply because they all introduce some artifacts. [[Wong-ekkabut-2016][Wong-ekkabut-2016]].
 {: .self_study_text :}
@@ -248,6 +255,13 @@ With local thermostats it is possible to control temperature in  selected groups
 - Local thermostats work well for large solutes.
 - Temperature of small solutes this approach may significantly fluctuate leading to unrealistic dynamics.
 {: .instructor_notes :}
+
+### Poll 7.2 Thermostats
+Which of the following statements is incorrect? 
+1. Stochastic temperature control methods impair conformational transitions
+2. The Berendsen thermostat is very useful for heating simulation systems
+3. Extended system thermostats control temperature without random velocity rescaling
+4. *Local thermostats work well for small groups of atoms
 
 >## Specifying local thermostats
 >With NAMD it is possible to set coupling coefficients for each atom in occupancy or beta column of a pdb file:
