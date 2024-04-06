@@ -137,9 +137,9 @@ Using a narrow box together with constraining rotational motion is more efficien
 
 ### Poll 4. Periodic box
 Which of the statements is incorrect?
-1. The minimum box size should extend at least 10 nm from the solute
-2. The smallest dimension of a periodic box must be at least as large as the double cut-off radius
-3. *The smallest dimension of a periodic box must be at least as large as the cut-off radius 
+1. *The smallest dimension of a periodic box must be at least as large as the cut-off radius 
+2. The minimum box size should extend at least 10 nm from the solute
+3. The smallest dimension of a periodic box must be at least as large as the double cut-off radius
 4. There is an equivalent triclinic unit cell for any repeating shape that occupies all of space
 
 
