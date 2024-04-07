@@ -82,61 +82,35 @@ Which of the following statements is incorrect?
 
 ## Introduction
 Atoms and molecules, the building blocks of matter, interact with each other. They are attracted at long distances, but at short distances the interactions become strongly repulsive. As a matter of fact, there is no need to look for a proof that such interactions exist. Every day, we observe indirect results of these interactions with our own eyes. For example, because of the attraction between water molecules, they stick together to form drops, which then rain down to fill rivers. On the other hand, due to the strong repulsion, one liter of the same water always weighs about 1 kg, regardless of how much pressure we use to compress it.
-{: .self_study_text :}
-Nowadays, molecular modeling is done by analyzing dynamic structural models in computers. Historically, the modeling of molecules started long before the invention of computers. In the mid-1800's structural models were suggested for molecules to explain their chemical and physical properties. First attempts at modeling interacting molecules were made by van der Waals in his pioneering work ["About the continuity of the gas and liquid state"](https://www.worldcat.org/title/over-de-continuiteit-van-den-gas-en-vloeistoftoestand/oclc/3301223) published in 1873. A simple equation representing molecules as spheres that are attracted to each other enabled him to predict the transition from gas to liquid. Modern molecular modeling and simulation still rely on many of the concepts developed over a century ago. Recently, MD simulations have been vastly improved in size and length. With longer simulations, we are able to study a broader range of problems under a wider range of conditions.
-{: .self_study_text :}
 
-- Atoms and molecules interact with each other.
-- We carry out molecular modeling by following and analyzing dynamic structural models in computers. 
-{: .instructor_notes :}
+Molecular modeling is an important tool for analyzing and studying the behavior of molecules. It involves the use of computational algorithms and software to create dynamic structural models. These models are used to represent the molecular structure and interactions of atoms, molecules, and materials.
+
+Historically, the modeling of molecules started long before the invention of computers. In the mid-1800's structural models were suggested for molecules to explain their chemical and physical properties. Van der Waals made the first attempts at modeling interacting molecules in his pioneering work ["About the continuity of the gas and liquid state"](https://www.worldcat.org/title/over-de-continuiteit-van-den-gas-en-vloeistoftoestand/oclc/3301223) published in 1873. Using a simple equation describing molecules as spheres that are attracted to each other, he predicted the transition from gas to liquid. Modern molecular modeling and simulation still rely on many of the concepts developed over a century ago. 
+
+Recently, MD simulations have been vastly improved in size and length. Longer simulations allow us to consider a wider range of problems under a wider range of conditions. Molecular modeling has a wide range of applications in various fields, including chemistry, biology, and materials science. It is particularly useful in drug discovery, where it helps in designing new medications by predicting their behavior and interactions with biological targets. Materials science also relies on molecular modeling to explore materials' properties and to optimize their construction.
 
 ![MD-timeline: system-size vs. time]({{ page.root }}/fig/MD_size_timeline.png){: width="400" }
 Figure from: [AI-Driven Multiscale Simulations Illuminate Mechanisms of SARS-CoV-2 Spike Dynamics](https://youtu.be/EIReA3s1Nwk)
 {: .text-center :}
 
-- The size and the length of MD simulations has been recently vastly improved. 
-- Longer and larger simulations allow us to tackle wider range of problems under a wide variety of conditions.
-{: .instructor_notes :}
-----
-{: .instructor_notes :}
-#### Recent example - simulation of the whole SARS-CoV-2 virion 
-{: .instructor_notes :}
-One of the recent examples is simulation of the whole SARS-CoV-2 virion. The goal of this work was to understand how this virus infects cells. As a result of MD simulations, conformational transitions of the spike protein as well as its interactions with ACE2 receptors were identified. According to the simulation, the receptor binding domain of the spike protein, which is concealed from antibodies by polysaccharides, undergoes conformational transitions that allow it to emerge from the glycan shield and bind to the angiotensin-converting enzyme (ACE2) receptor in host cells.  
-{: .self_study_text :}
-The virion model included 305 million atoms, it had a lipid envelope of 75 nm in diameter with a full virion diameter of 120 nm. The multiscale simulations were performed using a combination of NAMD, VMD, AMBER. State-of-the-art methods such as the Weighted Ensemble Simulation Toolkit and ML were used. The whole system was simulated on the Summit supercomputer at Oak Ridge National Laboratory for a total time of 84 ns using NAMD. In addition a weighted ensemble of a smaller spike protein systems was simulated using GPU accelerated AMBER software. 
-{: .self_study_text :}
-This is one of the first works to explore how machine learning can be applied to MD studies. Using a machine learning algorithm trained on thousands of MD trajectory examples, conformational sampling was intelligently accelerated. As a result of applying machine learning techniques, it was possible to identify pathways of conformational transitions between active and inactive states of spike proteins.
-{: .self_study_text :}
-- System size: 304,780,149 atoms, 350 Å × 350 Å lipid bilayer, simulation time 84 ns
-{: .instructor_notes :}
+One of the recent examples is simulation of the whole SARS-CoV-2 virion. The goal of this study was to understand how the virus infects cells. MD simulations revealed conformational transitions of the spike protein and its interactions with ACE2 receptors. In the simulation, the receptor binding domain of the spike protein, which is hidden from antibodies by polysaccharides, undergoes conformational changes that allow it to emerge from the shield and bind to host cells' angiotensin-converting enzyme (ACE2) receptors.  
+
+The virion model had 305 million atoms, and its diameter was 120 nm. Multiple spatial and temporal scales were simulated using NAMD, AMBER, and VND programs. The whole virion was simulated on the Summit supercomputer at Oak Ridge National Laboratory for a total time of 84 ns using NAMD. In addition a large ensemble of a smaller spike protein systems was simulated using GPU accelerated AMBER software. 
+
+Interestingly, this is one of the first attempts to explore how machine learning can be applied to MD studies. With the help of a machine learning algorithm trained on thousands of MD trajectories, conformational sampling was intelligently accelerated enabling identification of conformational transitions pathways between active and inactive states of spike proteins.
 
 ![Image: Simulation of SARS-CoV-2 with NAMD]({{ page.root }}/fig/Cov2-NAMD.jpg){: width="480" }
 Figure from [AI-Driven Multiscale Simulations Illuminate Mechanisms of SARS-CoV-2 Spike Dynamics](https://www.biorxiv.org/content/10.1101/2020.11.19.390187v1)
 {: .text-center :}
 
-- Showed that spike glycans can modulate the infectivity of the virus.
-- Characterized interactions between the spike and the human ACE2 receptor.
-- Used ML to identify conformational transitions between states and accelerate conformational sampling.
-{: .instructor_notes :}
-----
-{: .instructor_notes :}
-
 ### Goals
-In this workshop, you will learn about molecular dynamics simulations and how to use different molecular dynamics simulation packages and utilities, such as NAMD, VMD, and AMBER. We will show you how to use *Digital Research Alliance of Canada* (Alliance) clusters for all steps of preparing the system, performing MD and analyzing the data. The emphasis will be on reproducibility and automation through scripting and batch processing.
-{: .self_study_text :}
-- Introduce you to the method of molecular dynamics simulations. 
-- Guide you to using various molecular dynamics simulation packages and utilities.
-- Teach how to use *Digital Research Alliance of Canada* (Alliance) clusters for system preparation, simulation and trajectory analysis. 
-{: .instructor_notes :}
+This workshop will teach you how to use molecular dynamics simulation packages and utilities like AMBERTOOLS and VMD. During this workshop, you will learn how to use the Alliance clusters to prepare simulations, run MD, and analyze trajectories. We will focus on reproducibility and automation through scripting and batch processing.
 
-The goal of this first lesson is to provide an overview of the theoretical foundation of molecular dynamics. As a result of this lesson, you will gain a deeper understanding of how particle interactions are modeled and how molecular dynamics are simulated.
-{: .self_study_text :}
-The focus will be on reproducibility and automation by introducing scripting and batch processing.
-{: .instructor_notes :}
+This first lesson provides an overview of molecular dynamics theory. It will help you understand how particle interactions are modeled and how molecular dynamics is simulated. Upon completion of this lesson, you will know how to set up general parameters to control MD simulations. 
 
 ## The theory behind the method of MD. 
 ### Force Fields
-The development of molecular dynamics was largely motivated by the desire to understand complex biological phenomena at the molecular level. To gain a deeper understanding of such processes, it was necessary to simulate large systems over a long period of time.
+Understanding complex biological phenomena at the molecular level was a major motivation for developing molecular dynamics. To gain a deeper understanding of such processes, it was necessary to simulate large systems over a long period of time.
 {: .self_study_text :}
 While the physical background of intermolecular interactions is known, there is a very complex mixture of quantum mechanical forces acting at a close distance. The forces between atoms and molecules arise from dynamic interactions between numerous electrons orbiting atoms. Since the interactions between electron clouds are so complex, they cannot be described analytically, nor can they be calculated numerically fast enough to enable a dynamic simulation on a relevant scale.
 {: .self_study_text :}
