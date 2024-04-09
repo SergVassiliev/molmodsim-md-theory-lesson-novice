@@ -56,15 +56,20 @@ The long range contribution can then be efficiently computed in Fourier space us
 
 ![Image: PME Grid]({{ page.root }}/fig/PME.png)
 
-1. Assign charges to grid cells. Charges in grid cells are obtained by interpolation. 
-2. Compute Fourier transform. 
-3. Compute potential. Coulomb interaction decays rapidly in Fourier space, and summation converges fast.     
-4. Compute inverse Fourier transform. 
-5. Interpolate gridded potentials back to atomic centers.  
+
+1. The first step of PME calculation is to assign charges to grid cells. Charges in the grid cells are obtained by interpolation.
+2. After interpolation discrete Fourier transform is computed.
+3. Then potential in grid cells is calculated. Coulomb interaction decays rapidly in Fourier space, and summation converges fast.     
+4. Inverse Fourier transform is computed to transform gridded potentials to real space.
+5. Finally gridded potentials are interpolated back to atomic centers.  
 
 #### Simulation parameters controlling speed and accuracy of PME calculations.
-- **Grid spacing and dimension**. Grid dimension values give the size of the charge grid (upon which the reciprocal sums are interpolated) in each dimension. Higher values lead to higher accuracy (when the direct space tolerance is also lowered) but considerably slow down the calculation. Generally it has been found that reasonable results are obtained when grid dimension values are approximately equal to periodic box size, leading to a grid spacing of 1.0 Å. Significant performance enhancement in the calculation of the fast Fourier transform is obtained by having each of the values be a product of powers of 2, 3, and/or 5.  If the values are not given, programs will chose values to meet these criteria.
-- **Direct space tolerance**. Controls the splitting into direct and reciprocal part. Higher tolerance shifts more charges into Fourier space.
+Having learned how electrostatic potential is calculated, we can now examine the parameters controlling speed and accuracy of PME calculations.
+
+- **Grid spacing and dimension**. Grid dimension values give the size of the charge grid in each dimension. Higher values lead to higher accuracy but considerably slow down the calculation. Generally it has been found that reasonable results are obtained when grid dimension values are approximately equal to periodic box size, leading to a grid spacing of 1.0 Å. Significant performance enhancement in the calculation of the fast Fourier transform is obtained by having each of the values be a product of powers of 2, 3, and/or 5.  If the values are not given, programs will chose values to meet these criteria.  
+
+- **Direct space tolerance**. Controls the splitting into direct and reciprocal part. Higher tolerance shifts more charges into Fourier space.   
+
 - **Interpolation order** is the order of the B-spline interpolation. The higher the order, the better the accuracy (unless the charge grid is too coarse). The minimum order is 3. An order of 4 (the default) implies a cubic spline approximation which is a good standard value.  
 {: .self_study_text :}
 

@@ -21,7 +21,7 @@ keypoints:
 ---
 
 ## Temperature at the molecular level.
-Temperature is a macroscopic property and thermodynamics tells us that on the molecular level, the temperature of a system is  defined by the average kinetic energy of all the particles (atoms, molecules) that make up the system. Statistical thermodynamics tells us that a system that contains a certain amount of energy and is in equilibrium, will have all of its energy distributed in the most probable way. This distribution is called the Maxwell-Boltzmann distribution. This means that in a system of particles, these particles won’t all have the same velocity but rather the velocities will follow a distribution that depends on their mass and the temperature of the system.
+Temperature is a macroscopic property and thermodynamics explains that, the temperature of a system is  defined by the average kinetic energy of all the particles (atoms, molecules) that make up the system. As we know from statistical thermodynamics, a system containing a given amount of energy will distribute its energy in the most probable way. As a result, the velocities of particles in a system will not be the same, but rather they will follow a distribution based on their mass and the system's temperature. This distribution is called the Maxwell-Boltzmann distribution. 
 {: .self_study_text :}
 
 - Temperature is defined by the average kinetic energy of all the particles.
@@ -51,11 +51,13 @@ Velocity distributions obtained from MD simulations of water at different temper
 
 ![Plot of Maxwell-Boltzmann distributions]({{ page.root }}/fig/Maxwell_Boltzmann_distributions.svg){: width="320"} 
 
+Increasing temperature broadens the Maxwell-Boltzmann distribution. Light particles have broader distributions than heavy particles. 
+
 The plot above shows the distributions for the velocities of oxygen atoms from water molecules that have been simulated at three different temperatures (280K, 320K and 360K). 
 {: .self_study_text :}
 
 ## Thermodynamic ensembles
-Simulation systems can be classified according to their degree of separation from their surroundings, ranging from completely isolated to completely open. MD simulations usually simulate one of the following thermodynamic ensembles:
+In molecular dynamics simulations we generate an ensemble of particles and track their interactions and dynamics. Simulation systems can be classified according to their degree of separation from their surroundings, ranging from completely isolated to completely open. MD simulations usually simulate one of the following thermodynamic ensembles:
 
 1. The *microcanonical* or constant **NVE** ensemble, where the number of particles (*N*), the system's Volume (*V*) and the energy (*E*) are kept constant during the simulation. The microcanonical ensemble describes a system which is completely isolated from its surroundings. 
 2. The *canonical* or constant **NVT** ensemble, where the number of particles, the Volume and the temperature (*T*) are kept constant. The canonical ensemble describes a system in contact with a heat bath at constant temperature.
@@ -85,7 +87,7 @@ What thermodynamic ensemble describes an isolated system?
 4. Isothermal-isobaric
 
 ## Temperature Control Algorithms
-Despite their benefits, temperature control algorithms or thermostats have been described as "necessary evils" simply because they all introduce some artifacts. [[Wong-ekkabut-2016][Wong-ekkabut-2016]].
+Despite their benefits, temperature control algorithms or thermostats have been regarded as "necessary evils" because they all introduce some artifacts. [[Wong-ekkabut-2016][Wong-ekkabut-2016]].
 {: .self_study_text :}
 
 To maintain a constant temperature, a thermostat allows energy to enter and leave the simulated system. Practically, thermostats do this by modifying velocities of subsets of particles. Temperature control methods can be divided into several categories:
@@ -140,7 +142,7 @@ Both methods do not generate the correct canonical ensemble. If the velocities a
 
 ### 2. Weak coupling methods
 #### Berendsen thermostat
-The Berendsen thermostat at every simulation step rescales the velocities of all particles to remove a predefined fraction of the difference from the predefined temperature. [[Berendsen-1984][Berendsen-1984]. Conceptually this thermostat works analogous to coupling the simulated system to a fictitious heat bath kept at some constant temperature. The rate of temperature equilibration with this thermostat is controlled by strength of the coupling. This makes the Berendsen thermostat a predictably converging and robust thermostat, which can be very useful when allowing the system to relax, for example when starting a molecular dynamics simulation after after an energy minimization.
+The Berendsen thermostat at every simulation step rescales the velocities of all particles to remove a predefined fraction of the difference from the predefined temperature. [[Berendsen-1984][Berendsen-1984]. Conceptually this thermostat works analogous to coupling the simulated system to a fictitious heat bath kept at some constant temperature. The rate of temperature equilibration with this thermostat is controlled by strength of the coupling. This makes the Berendsen thermostat a predictably converging and robust thermostat, which can be very useful when allowing the system to relax, for example when starting a molecular dynamics simulation after energy minimization.
 {: .self_study_text :}
 - Rescale the velocities of all particles to remove a fraction of the difference from the predefined temperature.
 - The rate of temperature equilibration is controlled by strength of the coupling. 
@@ -148,7 +150,7 @@ The Berendsen thermostat at every simulation step rescales the velocities of all
 - Very useful when allowing the system to relax.
 {: .instructor_notes :}
 
-However, a drawback of Berendsen thermostat is that it cannot be mapped onto a specific thermodynamic ensemble. It has been shown that it produces an energy distribution with a lower variance than of a true canonical ensemble because it disproportionally samples kinetic energies closer to $$T_0$$ than would be observed in the true Maxwell-Boltzmann distribution [[Basconi-2013][Basconi-2013] and [Shirts-2013][Shirts-2013]].  Therefore, the Berendsen thermostat should be avoided for production MD simulations in most cases.
+A drawback of Berendsen thermostat is that it cannot be mapped onto a specific thermodynamic ensemble. It has been shown that it produces an energy distribution with a lower variance than of a true canonical ensemble because it disproportionally samples kinetic energies closer to the target T than would be observed in the true Maxwell-Boltzmann distribution [[Basconi-2013][Basconi-2013] and [Shirts-2013][Shirts-2013]].  Therefore, the Berendsen thermostat should be avoided for production MD simulations in most cases.
 {: .self_study_text :}
 ##### Downsides:
 {: .instructor_notes :}
@@ -163,7 +165,7 @@ Heat flows between the simulation system and the heat bath with the rate defined
 {: .instructor_notes :}
 
 ### 3. Stochastic methods
-Randomly assign a subset of atoms new velocities based on Maxwell-Boltzmann distributions for the target temperature. Randomization interferes with correlated motion and thus slows down the system's kinetics.
+Stochastic thermostats randomly assign a subset of atoms new velocities based on Maxwell-Boltzmann distributions for the target temperature. 
 {: .self_study_text :}
 Randomly assign a subset of atoms new velocities based on Maxwell-Boltzmann distributions for the target temperature. Randomization interferes with correlated motion and thus slows down the system's kinetics.
 {: .instructor_notes :}
@@ -214,9 +216,11 @@ Langevin dynamics mimics the viscous aspect of a solvent and interaction with th
 The amount of friction is controlled by the damping coefficient.  If its value is high, atoms will experience too much 
 unnatural friction, however if the coefficient is too low, your system will fluctuate too far away from the desired temperature. The default value is usually 1/ps.
 
+Stochastic thermostats can slow down conformational transitions and diffusion because randomization interferes with correlated motions.
+
 ### 4. Extended system thermostats
 #### Nosé-Hoover thermostat
-The extended system method originally introduced by Nose and subsequently developed by Hoover. The idea is to consider the heat bath as an integral part of the system by addition of an artificial variable associated with a fictional "heat bath mass" to the equations of motion. An important feature of this method is that the temperature can be controlled without involving random numbers. Thus correlated motions are not impaired and this method describes kinetics and diffusion properties better. Because the time-evolution of the added variable is described by a second-order equation, heat may flow in and out of the system in an oscillatory fashion, leading to nearly periodic temperature fluctuations with the frequency proportional to the "heat bath mass". [Nose-1984][Nose-1984], [Hoover-1985][Hoover-1985]. 
+The extended system method originally introduced by Nose and subsequently developed by Hoover. The idea is to consider the heat bath as an integral part of the system by addition of an artificial variable associated with a fictional "heat bath mass" to the equations of motion. An important feature of this method is that the temperature can be controlled without involving random numbers. Thus correlated motions are not impaired and this method describes kinetics and diffusion properties better. Because the time-evolution of the added variable is described by a second-order equation, heat may flow in and out of the system in an oscillatory fashion. This leads to periodic temperature fluctuations with the frequency proportional to the "heat bath mass". [Nose-1984][Nose-1984], [Hoover-1985][Hoover-1985]. 
 {: .self_study_text :}
 - The heat bath is integrated with the system by addition of an artificial variable associated with a fictional "heat bath mass" to the equations of motion. 
 - The temperature can be controlled without involving random numbers. 

@@ -85,7 +85,7 @@ Figure 1. The Distance Dependence of Potential and Force for Different Truncatio
 |=====
 |**Shifted potential**||
 |:---|:---:|
-| <br/> The standard solution is to shift the whole potential uniformly by adding a constant at values below cutoff (shifted potential method, Figure 1B). This ensures continuity of the potential at the cutoff distance and avoids infinite forces. The addition of a constant term does not change forces at the distances below cutoff because it disappears when the potential is differentiated. However, it introduces a discontinuity in the force at the cutoff distance. Particles will experience sudden un-physical acceleration when other particles cross their respective cutoff distance. Another drawback is that when potential is shifted the total potential energy changes.</div>  | ![]({{ page.root }}/fig/Shifted_potential.png){: width="1080" } |
+| <br/> The standard solution is to shift the whole potential uniformly by adding a constant at values below cutoff (shifted potential method, Figure 1B). This ensures continuity of the potential at the cutoff distance and avoids infinite forces. The addition of a constant term does not change forces at the distances below cutoff because it disappears when the potential is differentiated. However, it introduces a discontinuity in the force at the cutoff distance. Particles will experience sudden un-physical acceleration when other particles cross their respective cutoff distance. Another drawback is that when potential is shifted the total potential energy changes.  | ![]({{ page.root }}/fig/Shifted_potential.png){: width="1080" } |
 |=====
 |**Shifted Force**||
 |:---|:---:|

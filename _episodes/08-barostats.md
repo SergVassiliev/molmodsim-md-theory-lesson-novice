@@ -14,7 +14,7 @@ keypoints:
 ## Introduction 
 The role of pressure control algorithms is to keep pressure in the simulation system constant or to apply an external stress to the simulated system. 
 
-How is pressure kept constant in a simulation? Pressure is kept on its target value by adjusting the volume of a periodic simulation system. What defines pressure is a simulation system, how can we measure pressure in a simulation? From the physical point of view pressure is a force exerted by collision of particles with the walls of a closed container. The virial equation is commonly used to obtain the pressure from a molecular dynamics simulation. According to this equation pressure in a simulation has two components:
+What defines pressure is a simulation system and how can we measure pressure in a simulation? From the physical point of view pressure is a force exerted by collision of particles with the walls of a closed container. The virial equation is commonly used to obtain the pressure from a molecular dynamics simulation. According to this equation pressure in a simulation has two components:
 {: .self_study_text :}
 - Pressure is kept on its target value by adjusting the volume of a periodic simulation system.
 - Pressure is a force exerted by collision of particles with the walls of a closed container. 
@@ -30,11 +30,9 @@ The first term in this equation describes pressure of an ideal gas (meaning no i
 - Well suited for MD because forces are evaluated at each simulation step.
 {: .instructor_notes :}
 
-As with temperature control, there are different algorithms of pressure control for MD simulation. 
-{: .self_study_text :}
 
 ## Pressure Control Algorithms
- Barostats regulate pressure by adjusting the volume of the simulated system. In practice this done by scaling coordinates of each atom is a system by a small factor, so that the size of the system changes. The methods of maintaining pressure fall into categories similar to categories of temperature regulation.
+How is pressure kept constant in a simulation? Barostats regulate pressure by adjusting the volume of the simulated system. In practice this done by scaling coordinates of each atom is a system by a small factor, so that the size of the system changes. As with temperature control, there are different algorithms of pressure control. The methods of maintaining pressure fall into categories similar to categories of temperature regulation.
 {: .self_study_text :}
 - Regulate pressure by adjusting the volume 
 - In practice barostats do that by scaling coordinates of each atom by a small factor. 
@@ -49,7 +47,7 @@ As with temperature control, there are different algorithms of pressure control 
 
 ### 1. Weak coupling methods
 #### Berendsen pressure bath coupling. 
-Berendsen barostat is conceptually similar to Berendsen thermostat. This thermostat is available in all simulation packages. To regulate pressure this algorithm changes the volume by an increment proportional to the difference between the internal pressure and pressure in a weakly coupled bath. Berendsen thermostat is very efficient in equilibrating the system. However, it does not sample the exact NPT statistical ensemble. Often pressure fluctuations with this barostat are smaller then they should be. It is also known that this algorithm induces artifacts into simulations of inhomogeneous systems such as aqueous biopolymers or liquid/liquid interfaces.
+Berendsen barostat is conceptually similar to Berendsen thermostat. This thermostat is available in all simulation packages. To regulate pressure the algorithm changes the volume by an increment proportional to the difference between the internal pressure and the target pressure of a weakly coupled bath. Berendsen thermostat is very efficient in equilibrating the system. However, it does not sample the exact NPT statistical ensemble. Often pressure fluctuations with this barostat are smaller then they should be. It is also known that this algorithm induces artifacts into simulations of inhomogeneous systems such as aqueous biopolymers or liquid/liquid interfaces.
 {: .self_study_text :}
 - Conceptually similar to Berendsen thermostat. 
 - Available in all simulation packages. 
@@ -68,7 +66,7 @@ The time constant for pressure bath coupling is the main parameter of the Berend
 Reference: [Molecular dynamics with coupling to an external bath](https://aip.scitation.org/doi/10.1063/1.448118)
 
 ### 2. Extended system methods
-In the classical work Andersen proposed a pressure control method with an extended system variable. It is based on including an additional degree of freedom corresponding to the volume of a simulation cell which adjusts itself to equalize the internal and external pressure. In this method an additional degree of freedom serves as a piston, and is given a fictitious "mass". The choice of piston "mass" determines the decay time of the volume fluctuations. The Parrinello-Rahman barostat, the Nosé-Hoover barostat, and the Martyna-Tuckerman-Tobias-Klein (MTTK) are all based on the [Andersen barostat](https://aip.scitation.org/doi/abs/10.1063/1.439486).
+The classical work by Andersen proposed a pressure control method which was based on an extended system variable. The method is based on including an additional degree of freedom corresponding to the volume of a simulation cell which adjusts itself to equalize the internal and external pressure. In this method an additional degree of freedom serves as a piston, and is given a fictitious "mass". The choice of piston "mass" determines the decay time of the volume fluctuations. The Parrinello-Rahman barostat, the Nosé-Hoover barostat, and the Martyna-Tuckerman-Tobias-Klein (MTTK) are all based on the [Andersen barostat](https://aip.scitation.org/doi/abs/10.1063/1.439486).
 {: .self_study_text :}
 
 - Extended system methods originate from the classical theoretical work of [Andersen](https://aip.scitation.org/doi/abs/10.1063/1.439486).
@@ -136,20 +134,14 @@ See "fig/barostats_comp -  Copyright Clearance Center.pdf"
 
 #### Stochastic Cell Rescaling
 The stochastic cell rescaling algorithm was developed by [Bernetti and Bussi (2020)][Bernetti-2020]
-as an improved version of the Berendsen pressure bath that samples correct volume fluctuations.
-It adds a stochastic term to the calculation of the rescaling matrix that causes the local pressure
-fluctuations to be correct for the canonical (NPT) statistical ensemble while retaining the fast
-first order decay of the pressure deviations from the target pressure.
+as an improved version of the Berendsen pressure bath that samples correct volume fluctuations. Adding a stochastic term to the rescaling matrix corrects the local pressure fluctuations for the canonical NPT ensemble while retaining the fast decay of the deviation from the target pressure.
 {: .self_study_text :}
 - Improved version of the Berendsen barostat.
 - Adds stochastic term to rescaling matrix.
 - Produces correct fluctuations of local pressure for NPT ensemble.
 {: .instructor_notes :}
 
-Therefore stochastic cell rescaling can be applied during both equilibration, while the pressure 
-is still far from the target, which would lead to undesired oscillations when using extended system
-methods like Parrinello-Rahman or MTTK, as well as during production-md (data collection), where
-it is important to sample from a correct statistical ensemble.
+Stochastic cell rescaling can be applied during both equilibration and production runs since pressure converges quickly without oscillations.
 {: .self_study_text :}
 - Pressure converges fast without oscillations.
 - Can be used for all stages of MD, including production.
@@ -157,7 +149,7 @@ it is important to sample from a correct statistical ensemble.
 
 
 ### 4. Monte-Carlo pressure control. 
-Recently several efficient Monte Carlo methods have been introduced. Monte Carlo pressure control samples volume fluctuations at a predefined number of steps at a given constant external pressure. It involves generation of a random volume change from a uniform distribution followed by evaluation of the potential energy of the trial system. The volume move is then accepted with the standard Monte-Carlo probability. Virial is not computed by Monte-Carlo methods, so pressure is not available at runtime, and it is also not printed in energy files.
+Recently several efficient Monte Carlo methods have been introduced. Monte Carlo pressure control samples volume fluctuations at a predefined number of steps at a given constant external pressure. It involves generation of a random volume change from a uniform distribution followed by evaluation of the potential energy of the trial system. The volume move is then accepted with the standard Monte-Carlo probability. Virial is not computed by Monte-Carlo methods, so pressure is not available at runtime, therefore you will not find pressure in MD output logs.
 {: .self_study_text :}
 - Recently several efficient Monte Carlo methods have been introduced. 
 - Sample volume fluctuations at a predefined number of steps at a given constant external pressure. 
@@ -171,7 +163,7 @@ References:
 
 
 ## Pitfalls
-To ensure stability of a simulation volume must be adjusted very slowly with a small increments at each simulations step. Rapid change of the system size may lead to simulation crash. This can occur, for example when pressure coupling is turned on when you begin simulation from a cold start and turn pressure coupling too early in the heating process. In this case, the difference between the target and the real pressure will be large, the program will try to adjust the density too quickly, and bad things (such as SHAKE failures) are likely to happen.
+To ensure stability of a simulation volume must be adjusted very slowly with a small increments at each simulations step. Rapid change of the system size may lead to simulation crash. This can occur, for example when pressure coupling is turned on when you begin simulation from a cold start and turn pressure coupling too early in the heating process. In this case, the difference between the target and the real pressure will be large, the program will try to adjust the density too quickly, and bad things (such as neighbor list and constraint failures) are likely to happen.
 {: .self_study_text :}
 - If the difference between the target and the real pressure is large, the program will try to adjust the density too quickly.
 - Rapid change of the system size may lead to simulation crash.

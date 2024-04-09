@@ -16,7 +16,11 @@ keypoints:
 ---
 
 ### Introduction
-The goal of bio-molecular simulations is the accurate and predictive computer simulation of the physical properties of biological molecules in their aqueous environments. There are two approaches to solvation: a suitable amount of explicit water molecules can be added to prepare a fully solvated simulation system. Alternatively, water can be treated as a continuous medium instead of individual molecules. 
+Simulating biological molecules in aqueous environments is the goal of most bio-molecular simulations.
+
+There are two approaches to solvation: 
+- A suitable amount of explicit water molecules can be added to prepare a fully solvated simulation system. 
+- Alternatively, water can be treated as a continuous medium instead of individual molecules. 
 {: .self_study_text :}
 
 Realistic water environment is essential for accurate simulation of biological molecules.
@@ -99,7 +103,7 @@ Models with three sites are commonly used because they are computationally effic
 {: .self_study_text :}
 
 #### 3-charge 4-point models.
-In these models the negative charge is not centered on the oxygen atom, but shifted towards hydrogen atoms. This position is represented with the fourth dummy atom (EP) located near the oxygen along the bisector of the HOH angle. The idea is to improve representation of electrostatic potential without changing its geometric properties. The idea is to improve electrostatic potential representation without changing the geometric properties of the molecule.
+In these models the negative charge is not centered on the oxygen atom, but shifted towards hydrogen atoms. This position is represented with the fourth dummy atom (EP) located near the oxygen along the bisector of the HOH angle. The idea is to improve electrostatic potential representation without changing the geometric properties of the molecule.
 {: .self_study_text :}
 - The negative charge is not centered on the oxygen atom, but shifted towards hydrogen atoms
 - The position of charge is represented with the fourth dummy atom (EP)
@@ -108,7 +112,8 @@ In these models the negative charge is not centered on the oxygen atom, but shif
 
 |||
 |:-|:-:|
-|**TIP4P-Ew**<br><br>$\circ$  Improves association/dissociation balance compared to 3-point models. | ![Water Models]({{ page.root }}/fig/tip4p.svg){: width="150"}|
+|**TIP4P-Ew**<br><br>$\circ$ The TIP4P-Ew water model is a re-parameterisation of the standard TIP4P model for use with Ewald techniques. Improves association/dissociation balance compared to 3-point models. | ![Water Models]({{ page.root }}/fig/tip4p.svg){: width="150"}|
+
 
 #### Water models have their limitations.
 It is important to understand the limitations of water models. Models are unable to reproduce quantitatively all characteristics of real water. When chosen appropriately for the problem, however, they can provide useful insight into water's behavior.
@@ -168,7 +173,7 @@ The Drude particle is a massless virtual site with a partial electric charge att
 This cost can be reduced by assigning a small mass to each Drude particle, and evolving the simulation using the extended Lagrangian dynamics. Simulations using polarizable water models such as (iAMOEBA and SWM4-NDP) still take at least four times as long as those using rigid non-polarizable water. Additionally, Drude water models have the drawback of requiring matching, polarizable force fields for biomolecules. 
 {: .self_study_text :}
 
-OPC3-pol performs almost as well as non-polarizable water models and requires no specialized force fields for proteins or nucleic acids.
+OPC3-pol performs almost as fast as non-polarizable water models and requires no specialized force fields for proteins or nucleic acids.
 For high computational efficiency, the OPC3-pol model treats the Drude particle as an "ordinary" atom in the molecular dynamics system: the water oxygen mass is split equally between the oxygen atom and the Drude particle.
 {: .self_study_text :}
 
@@ -179,7 +184,7 @@ The critical benefit of the approach is that OPC3-pol water model can run as fas
 {: .self_study_text :}
 
 ### Quality of different water models 
-Let's have a look at the quality scores of different water models summarized in the figure below. The figure shows how quality score depends on the dipole and quadrupole moments. Interestingly the test models in which the moments were close to the QM values had low quality. And the models that scored better had moments very different from the QM values. 
+Let's have a look at the quality scores of different water models summarized in the figure below. The figure shows how quality score depends on the dipole and quadrupole moments. Interestingly the tested models in which the moments were close to the QM values had low quality. And the models that scored better had moments very different from the QM values. 
 {: .self_study_text :}
 - The test models in which the moments were close to the QM values had low quality. 
 - The models that scored better had moments very different from the QM moments. 
@@ -202,7 +207,12 @@ The time to compute interactions between a pair of water molecules is approximat
 
 ### Other things to consider
 Water models in common use in bio-molecular simulation have traditionally only been parameterized for a single temperature of 298K (SPC/E, TIP3P, etc.)
- 
+
+### Conclusion 
+Our lesson for today comes to an end with this. Today, we have covered a wide range of topics, and I hope it has provided a solid foundation for MD application to your projects. Thank you for participating in today's lesson. It has been a pleasure sharing knowledge.
+
+
+
 ### Force Field Parameters of the common Water Models
 
 |     | TIP3P  | SPC/E   | TIP4P-Ew | OPC    | OPC3    |

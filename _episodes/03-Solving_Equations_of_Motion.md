@@ -195,7 +195,7 @@ To accelerate a simulation the electrostatic interactions outside of a specified
 
 - Compute long range electrostatic interactions less often than the short range interactions.
 - Employ an intermediate timestep for the short-range non-bonded interactions, performing only bonded interactions at each timestep.
-- Hydrogen mass repartitioning allows increasing time step to 4 fs.
+- Hydrogen mass repartitioning allows increasing time step to 4 fs. A hydrogen mass partitioning triples the mass of all hydrogens and reduces the mass of the heavy atoms bound to these hydrogens, preserving the total mass.
 
 
 ### Poll 3 Simulation time step.

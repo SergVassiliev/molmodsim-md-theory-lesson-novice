@@ -112,14 +112,9 @@ This first lesson provides an overview of molecular dynamics theory. It will hel
 ### Force Fields
 Understanding complex biological phenomena at the molecular level was a major motivation for developing molecular dynamics. To gain a deeper understanding of such processes, it was necessary to simulate large systems over a long period of time.
 {: .self_study_text :}
-While the physical background of intermolecular interactions is known, there is a very complex mixture of quantum mechanical forces acting at a close distance. The forces between atoms and molecules arise from dynamic interactions between numerous electrons orbiting atoms. Since the interactions between electron clouds are so complex, they cannot be described analytically, nor can they be calculated numerically fast enough to enable a dynamic simulation on a relevant scale.
-{: .self_study_text :}
-In order for molecular dynamics simulations to be feasible, it was necessary to be able to evaluate molecular interactions very quickly. To achieve this goal molecular interactions in molecular dynamics are approximated with a simple empirical potential energy function.
-{: .self_study_text :}
-- Understanding complex biological phenomena requires simulations of large systems for a long time windows. 
-- The forces acting between atoms and molecules are very complex.
-- Very fast method of evaluations molecular interactions is needed to achieve these goals.  
-{: .instructor_notes :}
+While the physical background of intermolecular interactions is known, there is a very complex mixture of quantum mechanical forces acting at a close distance. The forces between atoms and molecules arise from dynamic interactions between numerous electrons orbiting atoms. Since the interactions between electron clouds are so complex, they cannot be described analytically, nor can they be calculated numerically fast enough to enable a dynamic simulation on a relevant scale. 
+
+To make molecular dynamics simulations feasible, it was necessary to evaluate molecular interactions very quickly. To achieve this goal molecular interactions in molecular dynamics are approximated with a simple empirical potential energy function.
 
 **Interactions are approximated with a simple empirical potential energy function.**  
 {: .instructor_notes :}
@@ -164,7 +159,7 @@ Typically MD simulations are limited to evaluating only interactions between pai
 For convenience force fields can be divided into 3 general classes based on how complex they are.
 {: .self_study_text :}
 #### Class 1 force fields.
-In the class 1 force field dynamics of bond stretching and angle bending are described by simple harmonic motion, i.e. the magnitude of restoring force is assumed to be proportional to the displacement from the equilibrium position. As the energy of a harmonic oscillator is proportional to the square of the displacement, this approximation is called quadratic. In general, bond stretching and angle bending are close to harmonic only near the equilibrium. Higher-order anharmonic energy terms are required for a more accurate description of molecular motions. In the class 1 force field force matrix is diagonal because correlations between bond stretching and angle bending are omitted.
+In the class 1 force field dynamics of bond stretching and angle bending are described by simple harmonic motion, i.e. the magnitude of restoring force is assumed to be proportional to the displacement from the equilibrium position. As the energy of a harmonic oscillator is proportional to the square of the displacement, this approximation is called quadratic. In general, bond stretching and angle bending are close to harmonic only near the equilibrium. Higher-order anharmonic energy terms are required for a more accurate description of molecular motions. In the class 1 force field correlations between bond stretching and angle bending are omitted.
 {: .self_study_text :}
 - Dynamics of bond stretching and angle bending is described by simple harmonic motion (quadratic approximation)
 - Correlations between bond stretching and angle bending are omitted.  
@@ -210,7 +205,7 @@ The Lennard-Jones (LJ) potential approximates the potential energy of non-electr
 $V_{LJ}(r)=\frac{C12}{r^{12}}-\frac{C6}{r^{6}}$
 {: .math-center:}
 
-The $$r^{-12}$$ is used to approximate the strong Pauli repulsion that results from electron orbitals overlapping, while the $$r^{-6}$$ term describes weaker attractive forces acting between local dynamically induced dipoles in the valence orbitals. While the attractive term is physically realistic (London dispersive forces have $$r^{-6}$$ distance dependence), the repulsive term is a crude approximation of exponentially decaying repulsive interaction. The too steep repulsive part often leads to an overestimation of the pressure in the system.
+The $$r^{-12}$$ is used to approximate the strong Pauli repulsion that results from electron orbitals overlapping, while the $$r^{-6}$$ term describes weaker attractive forces acting between local dynamically induced dipoles in the valence orbitals. While the attractive term is physically realistic (London dispersive forces have $$r^{-6}$$ distance dependence), the repulsive term is a crude approximation of exponentially decaying repulsive interaction. The too steep repulsive part under certain conditions, such as high temperature or high pressure leads to an overestimation of the pressure in the system.
 {: .self_study_text :}
 - The $$r^{-12}$$ term approximates the strong Pauli repulsion originating from overlap of electron orbitals.
 - The $$r^{-6}$$ term describes weaker attractive forces acting between local dynamically induced dipoles in the valence orbitals.
@@ -234,11 +229,11 @@ The LJ coefficients *C* are related to the $$\sigma$$ and the $$\epsilon$$  with
 $C12=4\epsilon\sigma^{12},C6=4\epsilon\sigma^{6}$
 {: .math-center :}
 
-Often, this potential is referred to as LJ-12-6. One of its drawbacks is that its 12th power repulsive part makes atoms too hard. Some forcefields, such as COMPASS, implement LJ-9-6 potential in order to address this problem. Atoms become softer by using repulsive terms of the 9th power, but they also become too sticky.
+Often, this potential is referred to as LJ-12-6. As I mentioned above, the 12th power repulsive part makes atoms too hard. Some force fields, such as COMPASS, implement LJ-9-6 potential in order to address this problem. Atoms become softer by using repulsive terms of the 9th power, but they also become too sticky.
 {: .self_study_text :}
 
 #### The Lennard-Jones Combining Rules
-It is necessary to construct a matrix of the pairwise interactions in order to describe all *LJ* interactions in a simulation system. The *LJ* interactions between different types of atoms are computed by combining the *LJ* parameters. Different force fields use different combining rules. Using combining rules helps to avoid huge number of parameters for each combination of different atom types. 
+To describe all *LJ* interactions in a simulation system it is necessary to construct a matrix of the pairwise interactions. This means that interactions between all possible pairs of atoms must be computed.  The *LJ* interactions between different types of atoms are computed by combining the *LJ* parameters. Different force fields use different combining rules. Using combining rules helps to avoid huge number of parameters for each combination of different atom types. 
 {: .self_study_text :}
 - The *LJ* interactions between different types of atoms are computed by combining the *LJ* parameters. 
 - Avoid huge number of parameters for each combination of different atom types.
@@ -280,6 +275,8 @@ It is known to overestimate the well depth
 {: .callout}
 
 #### The Buckingham potential
+LJ-12-6 potential works well for simulations near room temperature and normal pressure, but fails to predict some properties such as phase transitions at high temperatures. An example is the simulation of phase transitions in metal halides used in solar panels. Force fields for such cases implement Buckingham potential.
+
 The Buckingham potential replaces the repulsive $$r^{-12}$$ term in Lennard-Jones potential by exponential function of distance:
 {: .self_study_text :}
 - Replaces the repulsive $$r^{-12}$$ term in Lennard-Jones potential with exponential function of distance:
@@ -290,12 +287,9 @@ $V_{B}(r)=Aexp(-Br) -\frac{C}{r^{6}}$
 
 ![graph: Buckingham potential]({{ page.root }}/fig/lj-buck.svg){: width="360" }
 
-Exponential function describes electron density more realistically but it is computationally more expensive to calculate. While using Buckingham potential there is a risk of "Buckingham Catastrophe", the condition when at short-range electrostatic attraction artificially overcomes the repulsive barrier and collision between atoms occurs. This can be remedied by the addition of $$r^{-12}$$ term.
-{: .self_study_text :}
-- Exponential function describes electron density more realistically
-- Computationally more expensive to calculate.
-- Risk of "buckingham catastrophe" at short distances.
-{: .instructor_notes :}
+Exponential function describes electron density more realistically but it is computationally more expensive to calculate. 
+
+[ Another drawback is that there is a risk of "Buckingham Catastrophe", the condition when at short-range electrostatic attraction artificially overcomes the repulsive barrier and collision between atoms occurs. This can be remedied by the addition of $$r^{-12}$$ term. ]
 
 There is only one combining rule for Buckingham potential in GROMACS:  
 $A_{ij}=\sqrt{(A_{ii}A_{jj})}$  
@@ -353,12 +347,9 @@ where *r<sub>ij</sub>* is the distance between the pair of atoms, *q<sub>i</sub>
 ![graph: electrostatic potential]({{ page.root }}/fig/Coulomb_interaction.png){: width="360" }
 
 ## Short-range and Long-range Interactions
-Interactions can be classified as short-range and long-range. In a short-range interaction, the potential decreases faster than *r<sup>-d</sup>*, where r is the distance between the particles and d is the dimension. Otherwise the interaction is long-ranged. Accordingly, the Lennard-Jones interaction is short-ranged, while the Coulomb interaction is long-ranged.
-{: .self_study_text :}
-- Interaction is short-range if the potential decreases faster than *r<sup>-3</sup>*
-- The Lennard-Jones interactions are short-ranged, *r<sup>-6</sup>*.
-- The Coulomb interactions are long-ranged, *r<sup>-1</sup>*. 
-{: .instructor_notes :}
+We have learned how molecular dynamics models VDWs and electrostatic interactions. Interactions can generally be categorized as short-range or long-range. In a short-range interaction, the potential decreases faster than *r<sup>-d</sup>*, where r is the distance between the particles and d is the dimension. Otherwise the interaction is long-ranged. Accordingly, the Lennard-Jones interaction is short-ranged, while the Coulomb interaction is long-ranged. 
+
+It is necessary to use different approaches to calculate short-range and long-range interactions efficiently. We will discuss these approaches in the next section.
 
 ### Poll #1.1  Non-bonded interactions.
 How many interactions are in the system composed of 10 Argon atoms?
@@ -368,7 +359,7 @@ How many interactions are in the system composed of 10 Argon atoms?
 4. 100
 
 ### Bonded Terms
-Bonded terms describe interactions between atoms within molecules. Bonded terms include several types of interactions, such as bond stretching terms, angle bending terms, dihedral or torsional terms, improper dihedrals, and coupling terms.
+Let's take a look at potentials used to describe interactions between atoms within molecules. Bonded terms describe such interactions. Bonded terms include several types of interactions, such as bond stretching terms, angle bending terms, dihedral or torsional terms, improper dihedrals, and coupling terms.
 {: .self_study_text :}
 
 #### The bond potential
@@ -407,7 +398,7 @@ The force constants for angle potential are about 5 times smaller that for bond 
 {: .instructor_notes :}
 
 #### The torsion (dihedral) angle potential
-The torsion energy is defined for every 4 sequentially bonded atoms. The torsion angle $$\phi$$ is the angle of rotation about the covalent bond between the middle two atoms and the potential is given by:
+The torsion energy is defined for every 4 sequentially bonded atoms. The torsion angle $$\phi$$ is the angle of rotation about the covalent bond between the middle two atoms and the potential is given by a sum of periodic functions:
 {: .self_study_text :}
 - Defined for every 4 sequentially bonded atoms. 
 - Sum of any number of periodic functions, *n* - periodicity,  $$\delta$$ - phase shift angle.
@@ -485,7 +476,7 @@ A protein can be seen as a series of linked sequences of peptide units which can
 
 phi/psi dihedral angle potentials correct for force field deficiencies such as errors in non-bonded interactions, electrostatics, lack of coupling terms, inaccurate combination, etc. 
 {: .self_study_text :}
-CMAP potential is a correction map to the backbone dihedral energy. It was developed to improve the sampling of backbone conformations. CMAP parameter does not define a continuous function. it is a grid of energy correction factors defined for each pair of phi/psi angles typically tabulated with 15 degree increments.
+CMAP potential is a correction to the backbone dihedral energy. It was developed to improve the sampling of backbone conformations. CMAP parameter does not define a continuous function. it is a grid of energy correction factors defined for each pair of phi/psi angles typically tabulated with 15 degree increments.
 {: .self_study_text :}
 - phi/psi dihedral angle potentials correct for force field deficiencies such as errors in non-bonded interactions, electrostatics, lack of coupling terms, inaccurate combination, etc. 
 - CMAP potential was developed to improve the sampling of backbone conformations. 
@@ -495,7 +486,8 @@ CMAP potential is a correction map to the backbone dihedral energy. It was devel
 
 ![graph: Phi Psi]({{ page.root }}/fig/cmap_energy.png){: width="240" }
 
-The grid of energy correction factors is constructed using QM data for every combination of $$\phi/\psi$$ dihedral angles of the peptide backbone and further optimized using empirical data. 
+The grid of energy correction factors is constructed using QM data for every combination of $$\phi/\psi$$ dihedral angles of the peptide backbone and further optimized using empirical data. Such correction maps are derived for each possible pair of amino acids.  
+
 {: .self_study_text :}
 CMAP potential was initially applied to improve CHARMM22 force field. CMAP corrections were later implemented in AMBER force fields [ff99IDPs](https://pubs.acs.org/doi/abs/10.1021/acs.jcim.5b00043) (force field for intrinsically disordered proteins), [ff12SB-cMAP](https://pubs.acs.org/doi/10.1021/acs.jctc.5b00662) (force field for implicit-solvent simulations), and ff19SB. 
 {: .self_study_text :}
@@ -522,8 +514,7 @@ Which potential describes the interaction between two molecules?
 ### Exclusions from Non-Bonded Interactions
 Pairs of atoms connected by chemical bonds are normally excluded from computation of non-bonded interactions because bonded energy terms replace non-bonded interactions. In biomolecular force fields all pairs of connected atoms separated by up to 2 bonds (1-2 and 1-3 pairs) are excluded from non-bonded interactions. 
 {: .self_study_text :}
-Computation of the non-bonded interaction between 1-4 pairs depends on the specific force field. Some force fields exclude VDW interactions and scale down electrostatic (AMBER) while others may modify both or use electrostatic as is.
-{: .self_study_text :}
+
 - In pairs of atoms connected by chemical bonds bonded energy terms replace non-bonded interactions. 
 - All pairs of connected atoms separated by up to 2 bonds (1-2 and 1-3 pairs) are excluded from non-bonded interactions. It is assumed that they are properly described with bond and angle potentials.
 {: .instructor_notes :}
@@ -532,8 +523,9 @@ Computation of the non-bonded interaction between 1-4 pairs depends on the speci
 
 The 1-4 interaction turns out to be an intermediate case where both bonded and non-bonded interactions are required for a reasonable description. Due to the short distance between the 1–4 atoms full strength non-bonded interactions are too strong, and in most cases lack fine details of local internal conformational degrees of freedom. To address this problem in many cases a compromise is made to treat this particular pair partially as a bonded and partially as a non-bonded interaction.
 {: .self_study_text :}
-Non-bonded interactions between 1-4 pairs depends on the specific force field. Some force fields exclude VDW interactions and scale down electrostatic (AMBER) while others may modify both or use electrostatic as is.
+Computation of the non-bonded interaction between 1-4 pairs depends on the specific force field. Some force fields exclude VDW interactions and scale down electrostatic (AMBER) while others may modify both or use electrostatic as is.
 {: .self_study_text :}
+
 - 1-4 interaction represents a special case where both bonded and non-bonded interactions are required for a reasonable description.  However, due to the short distance between the 1–4 atoms full strength non-bonded interactions are too strong and must be scaled down.
 - Non-bonded interaction between 1-4 pairs depends on the specific force field. 
 - Some force fields exclude VDW interactions and scale down electrostatic (AMBER) while others may modify both or use electrostatic as is.
